@@ -1,24 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { Button, List } from 'antd';
 
 function App() {
+  const [actionList, setActionList] = useState([]);
+  const addToActionList = action => {
+    setActionList([...actionList, action]);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        cristian-pavel-dev
       </header>
+      <main className="App-main">
+        <h4 className="title">Actions</h4>
+        <div className="button-container">
+          <Button
+            className="button"
+            type="primary"
+            onClick={() => addToActionList('the first button was clicked')}
+          >
+            First
+          </Button>
+          <Button
+            className="button"
+            type="secondary"
+            onClick={() => addToActionList('the second button was clicked')}
+          >
+            Second
+          </Button>
+        </div>
+        <h4 className="title">History</h4>
+        <List
+          className="item-list"
+          size="small"
+          bordered
+          dataSource={actionList}
+          renderItem={item => <List.Item>{item}</List.Item>}
+        />
+      </main>
     </div>
   );
 }
