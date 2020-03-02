@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Button, List } from 'antd';
+import { trackEvent } from './analytics';
 
 function App() {
   const [actionList, setActionList] = useState([]);
   const addToActionList = action => {
+    trackEvent('App', 'AddToActionList', action);
     setActionList([...actionList, action]);
   };
 
